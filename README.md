@@ -1,54 +1,55 @@
-[![Content Wind](https://content-wind.nuxt.space/cover.jpg)](https://content-wind.nuxt.space)
+# Chaitanya Sura — Portfolio
 
-# Content Wind
+Personal portfolio of **Chaitanya Sura** — Data · AI · ML Engineer & Data Scientist (Atlanta, GA, US).
 
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
-[![Nuxt Studio][nuxt-studio-src]][nuxt-studio-href]
+A single-page site with a fixed sidebar, scroll-spy navigation, scroll-reveal animations, an experience/education timeline, and category-labeled project cards. Built with an editorial, dark, print-inspired aesthetic.
 
-A personal website theme powered by [Nuxt Content](https://content.nuxt.com), [TailwindCSS](https://tailwindcss.com), [Iconify](https://iconify.design) and [Vue components](https://vuejs.org).
+**Live site:** https://chai-sura.github.io/portfolio/
 
-- 📖&nbsp; [Demo & Docs](https://content-wind.nuxt.space)
-- 🕹&nbsp; [Play online](https://githubblitz.com/Atinux/content-wind/tree/main/.demo)
-- 👀&nbsp; [Demo video](https://twitter.com/Atinux/status/1578505586979012608)
+## Tech stack
 
-## Features
+- [Nuxt 3](https://nuxt.com) (compatibility v4) + Vue 3
+- [Nuxt Content](https://content.nuxt.com) — content authored in Markdown (MDC)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Iconify](https://iconify.design) via `@nuxt/icon`
+- Fonts: Fraunces (display), Space Grotesk (body), JetBrains Mono (labels)
 
-- Create pages in Markdown in the `content/` directory
-- Use [Nuxt layouts](https://nuxt.com/docs/guide/directory-structure/layouts) in your Markdown pages
-- Enjoy meta tag generation from Markdown files
-- Configurable prose components with [Nuxt Typography](https://typography.nuxt.space)
-- Generated navigation based on your pages
-- Switch between Light & Dark mode :moon:
-- Access 200,000 icons from 100+ icon sets with the `<Icon>` component
-- Highlight code blocks with [Shiki](https://shiki.style)
-- Create Vue components and use them in Markdown
-- Deploy on any Node or Static hosting: GH Pages, Vercel, Netlify, Heroku, etc.
-- Live edit on [Nuxt Studio](https://nuxt.studio)
+## Project structure
 
-## Get started
-
-### Local
-
-```bash
-npx nuxi@latest init -t github:atinux/content-wind my-website
+```
+app/
+  app.config.ts          # social handles (github, linkedin, email)
+  layouts/sidebar.vue    # fixed sidebar + scroll-spy + scroll-reveal
+  pages/[...slug].vue    # renders Markdown content
+  components/
+    ProjectCard.vue      # category-labeled project card
+    ProjectGrid.vue
+    TimelineGroup.vue    # experience / education timeline
+    TimelineItem.vue
+    SkillsGrid.vue       # grouped skill chips
+    SkillGroup.vue
+  assets/css/main.css    # theme palette, fonts, reveal animation
+content/
+  1.index.md             # all page content (About, Experience, Projects, Skills, Education, Contact)
+public/                  # profile image, favicon
+.github/workflows/deploy.yml  # build + deploy to GitHub Pages
 ```
 
-Then follow the instructions and you are ready to go :rocket:
+## Editing content
 
-## License 📎
+All copy lives in [`content/1.index.md`](content/1.index.md). Projects, timeline entries, and skills use MDC components (e.g. `:::project-card`, `:::timeline-item`, `:::skill-group`).
 
-[MIT License](./LICENSE)
+## Local development
 
-<!-- Badges -->
-[license-src]: https://img.shields.io/github/license/Atinux/content-wind.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://github.com/Atinux/content-wind/blob/main/LICENSE
+```bash
+pnpm install
+pnpm dev        # http://localhost:3000
+```
 
-[use-template-src]: https://img.shields.io/badge/⚡️-Use%20this%20template-28CF8D?style=flat&colorA=18181B&colorB=28CF8D
-[use-template-href]: https://github.com/Atinux/content-wind-template/generate
+## Build
 
-[nuxt-studio-src]: https://img.shields.io/badge/Open%20in%20Nuxt%20Studio-18181B?&logo=nuxt.js&logoColor=3BB5EC
-[nuxt-studio-href]: https://nuxt.studio/templates/content-wind
+```bash
+pnpm generate   # static output in .output/public
+```
 
-[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?&logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+Deployment is automated: pushing to `main` triggers the GitHub Actions workflow, which builds the static site and publishes it to GitHub Pages.

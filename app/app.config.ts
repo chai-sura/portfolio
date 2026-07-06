@@ -1,10 +1,10 @@
 export default defineAppConfig({
   cover: '/cover.jpg',
   socials: {
-    twitter: 'Atinux',
-    github: 'Atinux/content-wind',
-    mastodon: '@atinux@webtoo.ls',
-    bluesky: 'atinux.com',
+    github: 'chai-sura',
+    // TODO: replace with your LinkedIn handle — the part after /in/ (e.g. 'chaitanya-sura')
+    linkedin: 'your-linkedin-handle',
+    email: 'chaitanyasura1980@gmail.com',
   },
   icon: {
     aliases: {

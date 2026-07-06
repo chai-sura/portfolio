@@ -4,10 +4,84 @@
 
 @source "../../../content/**/*";
 
+@theme {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono-label: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  /* Dark-only palette */
+  --paper: oklch(16% 0.012 60);
+  --ink: oklch(96% 0.012 85);
+  --accent: oklch(68% 0.2 35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll-reveal: blocks fade/slide in as they enter the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.in-view {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 body {
-  @apply bg-gray-50 text-black dark:bg-gray-900 dark:text-white;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Map the prose typography plugin onto the paper / ink / accent palette */
+.prose {
+  --tw-prose-body: color-mix(in oklab, var(--ink) 85%, transparent);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-links: var(--accent);
+  --tw-prose-quotes: var(--ink);
+  --tw-prose-bullets: color-mix(in oklab, var(--ink) 40%, transparent);
+  --tw-prose-hr: color-mix(in oklab, var(--ink) 20%, transparent);
+  --tw-prose-counters: color-mix(in oklab, var(--ink) 50%, transparent);
+}
+
+.prose :where(h1, h2, h3) {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+.prose :where(h2[id]) {
+  scroll-margin-top: 2rem;
+  border-top: 2px solid var(--ink);
+  padding-top: 1.75rem;
+}
+
+.prose :where(hr) {
+  border-top-width: 2px;
+  border-color: color-mix(in oklab, var(--ink) 15%, transparent);
 }
 
 .prose a:not(h2 a, h3 a, h4 a, h5 a, h6 a, button a) {
-  @apply text-indigo-500 dark:text-indigo-400;
+  color: var(--accent);
 }
