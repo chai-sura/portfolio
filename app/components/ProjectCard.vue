@@ -2,6 +2,7 @@
 const props = defineProps<{
   title: string
   href: string
+  demo?: string
   tags?: string[]
   category?: string
 }>()
@@ -36,14 +37,26 @@ const catColor = computed(() => catColors[props.category ?? ''] ?? 'var(--accent
     <p class="mt-3 text-sm leading-relaxed text-ink/70 flex-1">
       <slot />
     </p>
-    <a
-      :href="href"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-1.5 mt-4 font-mono-label text-[11px] font-medium uppercase tracking-widest text-ink hover:text-accent transition-colors"
-    >
-      <Icon name="i-simple-icons-github" class="size-3.5" />
-      View Repository
-    </a>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
+      <a
+        :href="href"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 font-mono-label text-[11px] font-medium uppercase tracking-widest text-ink hover:text-accent transition-colors"
+      >
+        <Icon name="i-simple-icons-github" class="size-3.5" />
+        View Repository
+      </a>
+      <a
+        v-if="demo"
+        :href="demo"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 font-mono-label text-[11px] font-medium uppercase tracking-widest text-accent hover:text-ink transition-colors"
+      >
+        <Icon name="i-lucide-external-link" class="size-3.5" />
+        Live Demo
+      </a>
+    </div>
   </div>
 </template>

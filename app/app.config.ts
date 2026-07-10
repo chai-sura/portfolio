@@ -3,7 +3,7 @@ export default defineAppConfig({
   socials: {
     github: 'chai-sura',
     // TODO: replace with your LinkedIn handle — the part after /in/ (e.g. 'chaitanya-sura')
-    linkedin: 'your-linkedin-handle',
+    linkedin: 'csura25',
     email: 'chaitanyasura1980@gmail.com',
   },
   icon: {
